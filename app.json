@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ios-android-login",
-    "slug": "ios-android-login",
+    "name": "assignment",
+    "slug": "assignment",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

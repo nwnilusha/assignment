@@ -8,6 +8,7 @@ import {
   ImageBackground,
 } from "react-native";
 import { Camera } from "expo-camera";
+import getBase64Grayscale from "react-native-grayscale";
 
 const FingerprintScreen = ({ route, navigation }) => {
   const data = route.params;
@@ -35,10 +36,9 @@ const FingerprintScreen = ({ route, navigation }) => {
 
   //Capture an image
   const __takePicture = async () => {
-    const photo = await camera.takePictureAsync();
-    console.log("Photo captured from camera: ", photo.uri);
-    setPreviewVisible(true);
-    setCapturedImage(photo);
+    const options = { quality: 0.7, base64: true };
+    const photo = await camera.takePictureAsync(options);
+    const imageData = "data:image/jpg;base64," + photo.base64;
 
     let details = {
       names: data.names,
@@ -46,7 +46,7 @@ const FingerprintScreen = ({ route, navigation }) => {
       addressData: data.addressData,
       email: data.email,
       signature: data.signature,
-      fingerprint: photo.uri,
+      fingerprint: imageData,
     };
     navigation.push("Document", details);
   };

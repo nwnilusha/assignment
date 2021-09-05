@@ -5,28 +5,24 @@ import * as Print from "expo-print";
 
 const DocumentScreen = ({ route, navigation }) => {
   const data = route.params;
-
-  console.log("Fingerprint : ", data.signature);
-
+  //console.log("Signature data : ", data.signature);
+  console.log("Fingerprint data : ", data.fingerprint);
   //Generate a odf file from a HTML
   const createPDF = async () => {
     const results = {
       html:
-        "<h1>Personal details document</h1><h2>User Informations</h2><h3>Name : </h3><h3>" +
+        "<h2>User Details</h2><form><label for=name>Customer Name :</label><input type=text id=name value=" +
         data.names +
-        "</h3><h3>NIC Number : </h3><h3>" +
+        "><br><label for=name>NIC Number :</label><input type=text id=name value=" +
         data.nic +
-        "</h3><h3>Adress : </h3><h3>" +
+        "><br><label for=name>Address :</label><input type=text id=name value=" +
         data.addressData +
-        "</h3><h3>Signature : </h3><h3>" +
+        "><br><br><br></form><label for=name>Signature :</label><br><img src=" +
         data.signature +
-        "</h3><h3>Fingerprint : </h3><h3>" +
+        " height=300 width=300><br><br><label for=name>Fingerprint :</label><br><img src=" +
         data.fingerprint +
-        "</h3>",
-      // html:
-      //   "<html><body><div class='title-container'><img source=$" +
-      //   data.signature +
-      //   "/></div></body></html>",
+        " height=400 width=400>",
+
       fileName: "User Data",
       base64: true,
     };
